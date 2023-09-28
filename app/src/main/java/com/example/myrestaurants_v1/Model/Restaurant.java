@@ -80,6 +80,7 @@ public class Restaurant implements Parcelable {
         this.takeAway = false;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Restaurant{" +

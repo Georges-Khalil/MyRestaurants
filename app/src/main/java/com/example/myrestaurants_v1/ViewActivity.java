@@ -2,12 +2,7 @@ package com.example.myrestaurants_v1;
 
 import static com.example.myrestaurants_v1.MyApp.restaurantArrayAdapter;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myrestaurants_v1.databinding.ViewListBinding;
 

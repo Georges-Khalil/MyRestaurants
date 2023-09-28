@@ -2,13 +2,8 @@ package com.example.myrestaurants_v1;
 
 import static com.example.myrestaurants_v1.MyApp.restaurantList;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myrestaurants_v1.Model.Restaurant;
 import com.example.myrestaurants_v1.databinding.AddBinding;
@@ -45,7 +40,7 @@ public class AddActivity extends BaseActivity {
             binding.address.requestFocus();
             return;
         }
-        if(onTable == false && delivery == false && takeAway == false){
+        if(!onTable && !delivery && !takeAway){
             Toast.makeText(this,"Please choose at least one option", Toast.LENGTH_SHORT).show();
             return;
         }

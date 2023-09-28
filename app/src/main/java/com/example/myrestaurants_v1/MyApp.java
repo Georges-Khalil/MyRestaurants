@@ -1,9 +1,6 @@
 package com.example.myrestaurants_v1;
 
 import android.app.Application;
-import android.content.Intent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 
 import com.example.myrestaurants_v1.Model.Restaurant;

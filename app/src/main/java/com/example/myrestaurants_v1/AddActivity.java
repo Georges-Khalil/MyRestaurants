@@ -10,13 +10,13 @@ import com.example.myrestaurants_v1.databinding.AddBinding;
 import com.google.android.material.snackbar.Snackbar;
 
 public class AddActivity extends BaseActivity {
-    private AddBinding binding;
-
+    AddBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         binding = AddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.onTable.setChecked(true);
 
         binding.btAdd.setOnClickListener(v -> add_restaurant());
     }

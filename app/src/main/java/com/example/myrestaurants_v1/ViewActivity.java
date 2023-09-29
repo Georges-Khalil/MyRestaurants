@@ -7,8 +7,7 @@ import android.os.Bundle;
 import com.example.myrestaurants_v1.databinding.ViewListBinding;
 
 public class ViewActivity extends BaseActivity {
-    private ViewListBinding listBinding;
-
+    ViewListBinding listBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

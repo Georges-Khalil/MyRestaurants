@@ -1,36 +1,13 @@
 package com.example.myrestaurants_v1.Model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import androidx.annotation.NonNull;
 
-public class Restaurant implements Parcelable {
+public class Restaurant{
     private String name;
     private String address;
     private boolean onTable;
     private boolean delivery;
     private boolean takeAway;
-
-    protected Restaurant(Parcel in) {
-        name = in.readString();
-        address = in.readString();
-        onTable = in.readByte() != 0;
-        delivery = in.readByte() != 0;
-        takeAway = in.readByte() != 0;
-    }
-
-    public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
-        @Override
-        public Restaurant createFromParcel(Parcel in) {
-            return new Restaurant(in);
-        }
-
-        @Override
-        public Restaurant[] newArray(int size) {
-            return new Restaurant[size];
-        }
-    };
 
     public String getName() {
         return name;
@@ -90,19 +67,5 @@ public class Restaurant implements Parcelable {
                 ", delivery=" + delivery +
                 ", takeAway=" + takeAway +
                 '}';
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeString(name);
-        parcel.writeString(address);
-        parcel.writeByte((byte) (onTable ? 1 : 0));
-        parcel.writeByte((byte) (delivery ? 1 : 0));
-        parcel.writeByte((byte) (takeAway ? 1 : 0));
     }
 }

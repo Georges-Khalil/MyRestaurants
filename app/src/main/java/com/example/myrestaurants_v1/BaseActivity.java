@@ -1,17 +1,9 @@
 package com.example.myrestaurants_v1;
 
-import static com.example.myrestaurants_v1.MyApp.restaurantList;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -54,14 +46,12 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState( Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putParcelableArrayList("RestaurantList", (ArrayList<? extends Parcelable>) restaurantList);
         Log.d("activity_lifecycle", "onSaveInstanceState");
     }
 
     @Override
     public void onRestoreInstanceState( Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
-        restaurantList = savedInstanceState.getParcelableArrayList("RestaurantList");
         Log.d("activity_lifecycle", "onRestoreInstanceState");
     }
 }

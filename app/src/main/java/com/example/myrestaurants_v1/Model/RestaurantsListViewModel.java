@@ -15,4 +15,12 @@ public class RestaurantsListViewModel extends ViewModel {
     public void setRestaurantList(List<Restaurant> restaurantList) {
         this.restaurantList = restaurantList;
     }
+
+    public int size() {
+        return restaurantList.size();
+    }
+
+    public void add(Restaurant restaurant) {
+        restaurantList.add(restaurant);
+    }
 }

@@ -24,6 +24,8 @@ public class AddActivity extends BaseActivity {
     public void add_restaurant(){
         String name = binding.name.getText().toString();
         String address = binding.address.getText().toString();
+        String phone = binding.phone.getText().toString();
+        String web = binding.web.getText().toString();
         boolean onTable = binding.onTable.isChecked();
         boolean delivery = binding.delivery.isChecked();
         boolean takeAway = binding.takeaway.isChecked();
@@ -45,13 +47,15 @@ public class AddActivity extends BaseActivity {
             return;
         }
 
-        Restaurant restaurant = new Restaurant(name, address);
+        Restaurant restaurant = new Restaurant(name, address, phone, web);
         restaurant.setOnTable(onTable);
         restaurant.setDelivery(delivery);
         restaurant.setTakeAway(takeAway);
 
         binding.name.setText("");
         binding.address.setText("");
+        binding.phone.setText("");
+        binding.web.setText("");
         binding.onTable.setChecked(true);
         binding.delivery.setChecked(false);
         binding.takeaway.setChecked(false);

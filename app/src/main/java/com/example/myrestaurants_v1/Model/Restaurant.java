@@ -85,6 +85,7 @@ public class Restaurant{
         this.takeAway = false;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Restaurant{" +

@@ -38,10 +38,6 @@ public class HomeActivity extends BaseActivity {
             Intent AddActivity = new Intent(this, AddActivity.class);
             startActivity(AddActivity);
         }
-        if(item.getItemId()==R.id.home) {
-            Intent MainActivity = new Intent(this, HomeActivity.class);
-            startActivity(MainActivity);
-        }
         return true;
     }
 

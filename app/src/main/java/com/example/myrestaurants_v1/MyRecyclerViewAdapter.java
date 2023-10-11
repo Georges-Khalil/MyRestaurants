@@ -32,7 +32,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder_, int position) {
         RestaurantListVH holder = (RestaurantListVH) holder_;
         Restaurant restaurant = restaurantList.getRestaurantList().get(position);
-        holder.binding.rowName.setText(restaurant.getName());
+        holder.binding.Name.setText(restaurant.getName());
     }
 
     @Override

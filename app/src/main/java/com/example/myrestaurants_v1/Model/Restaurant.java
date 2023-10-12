@@ -77,14 +77,6 @@ public class Restaurant{
         this.takeAway = false;
     }
 
-    public Restaurant(String name, String address) {
-        this.name = name;
-        this.address = address;
-        this.onTable = true;
-        this.delivery = false;
-        this.takeAway = false;
-    }
-
     @NonNull
     @Override
     public String toString() {

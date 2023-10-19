@@ -8,6 +8,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.myrestaurants_v1.Model.Restaurant;
+import com.example.myrestaurants_v1.Model.RestaurantsListViewModel;
 import com.example.myrestaurants_v1.databinding.HomeBinding;
 
 public class HomeActivity extends BaseActivity {
@@ -15,6 +19,8 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        restaurantList = new ViewModelProvider(this).get(RestaurantsListViewModel.class);
+        addSomeRestaurants();
         homeBinding = HomeBinding.inflate(getLayoutInflater());
         setContentView(homeBinding.getRoot());
 
@@ -39,6 +45,23 @@ public class HomeActivity extends BaseActivity {
             startActivity(AddActivity);
         }
         return true;
+    }
+
+    public void addSomeRestaurants() {
+        Restaurant restaurant;
+        restaurant = new Restaurant("McDonalds", "Beirut Highway-LeMall, Dbayeh","01 492 703","https://mcdonalds.com.lb");
+        restaurant.setDelivery(true);
+        restaurantList.add(restaurant);
+        restaurant = new Restaurant("KFC", "Tripoli, Boulvard, El Bahsas","06 438 632","https://global.kfc.com/");
+        restaurantList.add(restaurant);
+        restaurant.setTakeAway(true);restaurant.setTakeAway(true);
+        restaurant = new Restaurant("Dip N' Dip", "Beirut"," 01 370 120","https://dipndip.com/");
+        restaurantList.add(restaurant);
+        restaurant.setDelivery(true);
+        restaurant = new Restaurant("CrepAway", "Byblos, Main Highway Entrance","09 943 777","https://crepaway.com/");
+        restaurantList.add(restaurant);
+        restaurant = new Restaurant("Roadster", "Batroun, Main Road","06 740 982","https://roadsterdiner.com/");
+        restaurantList.add(restaurant);
     }
 
     @Override

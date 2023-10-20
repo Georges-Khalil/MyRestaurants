@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myrestaurants_v1.Model.Restaurant;
+import com.example.myrestaurants_v1.Model.RestaurantDBHelper;
 import com.example.myrestaurants_v1.Model.RestaurantsListViewModel;
 import com.example.myrestaurants_v1.databinding.HomeBinding;
 
@@ -21,6 +22,7 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         restaurantList = new ViewModelProvider(this).get(RestaurantsListViewModel.class);
         addSomeRestaurants();
+        RestaurantDBHelper restaurantDBHelper = new RestaurantDBHelper(this);
         homeBinding = HomeBinding.inflate(getLayoutInflater());
         setContentView(homeBinding.getRoot());
 

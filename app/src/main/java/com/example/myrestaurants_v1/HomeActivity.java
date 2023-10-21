@@ -21,7 +21,9 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         restaurantList = new ViewModelProvider(this).get(RestaurantsListViewModel.class);
-        addSomeRestaurants();
+        if (restaurantList.size() == 0) {
+            addSomeRestaurants();
+        }
         RestaurantDBHelper restaurantDBHelper = new RestaurantDBHelper(this);
         homeBinding = HomeBinding.inflate(getLayoutInflater());
         setContentView(homeBinding.getRoot());

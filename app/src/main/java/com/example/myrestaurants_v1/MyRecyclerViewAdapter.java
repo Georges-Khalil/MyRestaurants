@@ -2,13 +2,19 @@ package com.example.myrestaurants_v1;
 
 import static com.example.myrestaurants_v1.MyApp.restaurantList;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import androidx.core.app.ActivityCompat;
+
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myrestaurants_v1.Model.Restaurant;
@@ -63,14 +69,23 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
         else{
             holder.binding.delivery.setImageResource(R.drawable.baseline_delivery_dining_24_false);
         }
+        if(ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+            holder.binding.call.setBackgroundColor(ContextCompat.getColor(context, R.color.dark_grey));
+        }
+        else{
+            holder.binding.call.setBackgroundColor(ContextCompat.getColor(context, R.color.pink));
+        }
 
         holder.binding.browse.setOnClickListener(v -> browseWebsite(restaurant.getWeb()));
         holder.binding.call.setOnClickListener(v -> callPhone(restaurant.getPhone()));
     }
 
     private void callPhone(String phone) {
+        if(ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+            return;
+        }
         Uri uri = Uri.parse("tel:" + phone);
-        Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+        Intent intent = new Intent(Intent.ACTION_CALL, uri);
         context.startActivity(intent);
     }
 

@@ -2,6 +2,9 @@ package com.example.myrestaurants_v1;
 
 import static com.example.myrestaurants_v1.MyApp.restaurantList;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -12,6 +15,11 @@ import com.example.myrestaurants_v1.Model.Restaurant;
 import com.example.myrestaurants_v1.databinding.RvItemBinding;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
+    private Context context;
+
+    public MyRecyclerViewAdapter(Context context) {
+        this.context = context;
+    }
 
     class RestaurantListVH extends RecyclerView.ViewHolder{
         RvItemBinding binding;
@@ -55,6 +63,21 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
         else{
             holder.binding.delivery.setImageResource(R.drawable.baseline_delivery_dining_24_false);
         }
+
+        holder.binding.browse.setOnClickListener(v -> browseWebsite(restaurant.getWeb()));
+        holder.binding.call.setOnClickListener(v -> callPhone(restaurant.getPhone()));
+    }
+
+    private void callPhone(String phone) {
+        Uri uri = Uri.parse("tel:" + phone);
+        Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+        context.startActivity(intent);
+    }
+
+    private void browseWebsite(String url) {
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        context.startActivity(intent);
     }
 
     @Override

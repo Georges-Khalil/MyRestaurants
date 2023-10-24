@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myrestaurants_v1.Model.Restaurant;
@@ -78,6 +79,21 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
 
         holder.binding.browse.setOnClickListener(v -> browseWebsite(restaurant.getWeb()));
         holder.binding.call.setOnClickListener(v -> callPhone(restaurant.getPhone()));
+        holder.binding.burgerMenu.setOnClickListener(v -> holder.binding.drawerLayout.openDrawer(GravityCompat.END));
+        holder.binding.delete.setOnClickListener(v -> deleteRestaurant(restaurant, position));
+        holder.binding.update.setOnClickListener(v -> editRestaurant(position));
+    }
+
+    private void editRestaurant(int position) {
+        Intent intent = new Intent(context, EditRestaurantActivity.class);
+        intent.putExtra("index", position);
+        context.startActivity(intent);
+    }
+
+    private void deleteRestaurant(Restaurant restaurant, int index) {
+        restaurantList.remove(restaurant);
+        notifyItemRemoved(index);
+        notifyItemRangeChanged(index, restaurantList.getRestaurantList().size() - index);
     }
 
     private void callPhone(String phone) {

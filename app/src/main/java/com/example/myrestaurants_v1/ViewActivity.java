@@ -23,6 +23,7 @@ public class ViewActivity extends BaseActivity {
         }
         listBinding = ViewListBinding.inflate(getLayoutInflater());
         setContentView(listBinding.getRoot());
+
         myRecyclerViewAdapter = new MyRecyclerViewAdapter(this);
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             listBinding.recycleView.setLayoutManager(new GridLayoutManager(this, 2));
@@ -50,5 +51,10 @@ public class ViewActivity extends BaseActivity {
                 listBinding.recycleView.setAdapter(myRecyclerViewAdapter);
             }
         }
+    }
+
+    public void onResume(){
+        super.onResume();
+        listBinding.recycleView.setAdapter(myRecyclerViewAdapter);
     }
 }

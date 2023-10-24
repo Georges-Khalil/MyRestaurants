@@ -23,4 +23,7 @@ public class RestaurantsListViewModel extends ViewModel {
     public void add(Restaurant restaurant) {
         restaurantList.add(restaurant);
     }
+    public void remove(Restaurant restaurant){
+        restaurantList.remove(restaurant);
+    }
 }

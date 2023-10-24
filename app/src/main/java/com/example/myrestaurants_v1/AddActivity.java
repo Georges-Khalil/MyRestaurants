@@ -43,7 +43,7 @@ public class AddActivity extends BaseActivity {
             return;
         }
         if(!onTable && !delivery && !takeAway){
-            Toast.makeText(this,"Please choose at least one option", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please choose at least one type", Toast.LENGTH_SHORT).show();
             return;
         }
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -24,7 +25,10 @@ public class HomeActivity extends BaseActivity {
         if (restaurantList.size() == 0) {
             addSomeRestaurants();
         }
+
         RestaurantDBHelper restaurantDBHelper = new RestaurantDBHelper(this);
+        Toast.makeText(this, restaurantDBHelper.getAllRestaurants().size()+"", Toast.LENGTH_LONG).show();
+
         homeBinding = HomeBinding.inflate(getLayoutInflater());
         setContentView(homeBinding.getRoot());
 

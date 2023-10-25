@@ -60,6 +60,7 @@ public class AddActivity extends BaseActivity {
         binding.delivery.setChecked(false);
         binding.takeaway.setChecked(false);
         binding.name.requestFocus();
+
         restaurantList.add(restaurant);
         Snackbar.make(binding.getRoot(), "Restaurant Added", Snackbar.LENGTH_SHORT).show();
     }

@@ -3,6 +3,7 @@ package com.example.myrestaurants_v1.Model;
 import androidx.annotation.NonNull;
 
 public class Restaurant{
+    private long id_;
     private String name;
     private String address;
     private String phone;
@@ -10,6 +11,14 @@ public class Restaurant{
     private boolean onTable;
     private boolean delivery;
     private boolean takeAway;
+
+    public long getId_() {
+        return id_;
+    }
+
+    public void setId_(long id_) {
+        this.id_ = id_;
+    }
 
     public String getName() {
         return name;

@@ -46,10 +46,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder_, int position) {
         RestaurantListVH holder = (RestaurantListVH) holder_;
         Restaurant restaurant = restaurantList.getRestaurantList().get(position);
+
         holder.binding.name.setText(restaurant.getName());
         holder.binding.address.setText(restaurant.getAddress());
         holder.binding.phone.setText(restaurant.getPhone());
         holder.binding.web.setText(restaurant.getWeb());
+
         if(restaurant.isOnTable()){
             holder.binding.onTable.setImageResource(R.drawable.baseline_table_restaurant_24);
         }
@@ -68,6 +70,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
         else{
             holder.binding.delivery.setImageResource(R.drawable.baseline_delivery_dining_24_false);
         }
+
         if(ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
             holder.binding.call.setBackgroundColor(ContextCompat.getColor(context, R.color.dark_grey));
         }

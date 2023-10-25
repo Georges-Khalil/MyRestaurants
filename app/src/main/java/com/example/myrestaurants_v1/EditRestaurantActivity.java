@@ -17,9 +17,11 @@ public class EditRestaurantActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         binding = EditBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         Intent intent = getIntent();
         int position = intent.getIntExtra("index", -1);
         Restaurant restaurant = restaurantList.getRestaurantList().get(position);
+
         binding.editLayout.name.setText(restaurant.getName());
         binding.editLayout.address.setText(restaurant.getAddress());
         binding.editLayout.phone.setText(restaurant.getPhone());

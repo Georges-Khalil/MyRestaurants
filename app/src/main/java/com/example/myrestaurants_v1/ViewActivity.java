@@ -26,6 +26,7 @@ public class ViewActivity extends BaseActivity {
         setContentView(listBinding.getRoot());
 
         myRecyclerViewAdapter = new MyRecyclerViewAdapter(this);
+
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             listBinding.recycleView.setLayoutManager(new GridLayoutManager(this, 2));
         }

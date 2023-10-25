@@ -67,6 +67,7 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
             restaurant.setOnTable(onTable);
             restaurant.setId_(id_);
             restaurantList.add(restaurant);
+            cursor.moveToNext();
         }
         return restaurantList;
     }

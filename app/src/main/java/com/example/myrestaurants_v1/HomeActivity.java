@@ -27,6 +27,13 @@ public class HomeActivity extends BaseActivity {
         }
 
         RestaurantDBHelper restaurantDBHelper = new RestaurantDBHelper(this);
+        /*
+        Restaurant restaurant;
+        restaurant = new Restaurant("McDonalds1", "Beirut Highway-LeMall, Dbayeh1","01 492 7031","https://mcdonalds.com.lb1");
+        restaurant.setDelivery(true);
+        restaurant.setId_(2);
+        restaurantDBHelper.deleteRestaurant(2);
+         */
         Toast.makeText(this, restaurantDBHelper.getAllRestaurants().size()+"", Toast.LENGTH_LONG).show();
 
         homeBinding = HomeBinding.inflate(getLayoutInflater());

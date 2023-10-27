@@ -71,4 +71,34 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
         }
         return restaurantList;
     }
+
+    public void updateRestaurant(Restaurant restaurant){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", restaurant.getName());
+        contentValues.put("address", restaurant.getAddress());
+        contentValues.put("phone", restaurant.getPhone());
+        contentValues.put("web", restaurant.getWeb());
+        contentValues.put("onTable", restaurant.isOnTable());
+        contentValues.put("delivery", restaurant.isDelivery());
+        contentValues.put("takeAway", restaurant.isTakeAway());
+        getWritableDatabase().update("restaurants", contentValues, "_id=?", new String[]{restaurant.getId_()+""});
+    }
+
+    public void deleteRestaurant(long id){
+        getWritableDatabase().delete("restaurants", "_id=?", new String[]{id+""});
+    }
+
+    public int restaurantCount(){
+        /*
+        String query = "select * from restaurants";
+        Cursor cursor = getReadableDatabase().rawQuery(query, null);
+        return cursor.getCount();
+         */
+        String query = "select count(*) from restaurants";
+        Cursor cursor = getReadableDatabase().rawQuery(query, null);
+
+        cursor.moveToFirst();
+        int count = cursor.getInt(0);
+        return count;
+    }
 }

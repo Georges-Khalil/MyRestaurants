@@ -57,6 +57,7 @@ public class ViewActivity extends BaseActivity {
 
     public void onResume(){
         super.onResume();
+        myRecyclerViewAdapter.refresh();
         listBinding.recycleView.setAdapter(myRecyclerViewAdapter);
     }
 }

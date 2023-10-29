@@ -1,6 +1,6 @@
 package com.example.myrestaurants_v1;
 
-import static com.example.myrestaurants_v1.MyApp.restaurantList;
+import static com.example.myrestaurants_v1.MyApp.restaurantDBHelper;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -61,7 +61,7 @@ public class AddActivity extends BaseActivity {
         binding.takeaway.setChecked(false);
         binding.name.requestFocus();
 
-        restaurantList.add(restaurant);
+        restaurantDBHelper.insert(restaurant);
         Snackbar.make(binding.getRoot(), "Restaurant Added", Snackbar.LENGTH_SHORT).show();
     }
 }

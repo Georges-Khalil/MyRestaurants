@@ -1,6 +1,6 @@
 package com.example.myrestaurants_v1;
 
-import static com.example.myrestaurants_v1.MyApp.restaurantList;
+import static com.example.myrestaurants_v1.MyApp.restaurantDBHelper;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +19,8 @@ public class EditRestaurantActivity extends BaseActivity{
         setContentView(binding.getRoot());
 
         Intent intent = getIntent();
-        int position = intent.getIntExtra("index", -1);
-        Restaurant restaurant = restaurantList.getRestaurantList().get(position);
+        long id = intent.getLongExtra("id_", -1);
+        Restaurant restaurant = restaurantDBHelper.getRestaurant(id);
 
         binding.editLayout.name.setText(restaurant.getName());
         binding.editLayout.address.setText(restaurant.getAddress());
@@ -31,10 +31,10 @@ public class EditRestaurantActivity extends BaseActivity{
         binding.editLayout.takeaway.setChecked(restaurant.isTakeAway());
         binding.editLayout.btAdd.setText("Update");
 
-        binding.editLayout.btAdd.setOnClickListener(v -> updateRestaurant(position));
+        binding.editLayout.btAdd.setOnClickListener(v -> updateRestaurant(restaurant));
     }
 
-    private void updateRestaurant(int position) {
+    private void updateRestaurant(Restaurant restaurant) {
         String name = binding.editLayout.name.getText().toString();
         String address = binding.editLayout.address.getText().toString();
         String phone = binding.editLayout.phone.getText().toString();
@@ -60,7 +60,6 @@ public class EditRestaurantActivity extends BaseActivity{
             return;
         }
 
-        Restaurant restaurant = restaurantList.getRestaurantList().get(position);
         restaurant.setName(name);
         restaurant.setAddress(address);
         restaurant.setPhone(phone);
@@ -68,5 +67,8 @@ public class EditRestaurantActivity extends BaseActivity{
         restaurant.setOnTable(onTable);
         restaurant.setDelivery(delivery);
         restaurant.setTakeAway(takeAway);
+
+        restaurantDBHelper.updateRestaurant(restaurant);
+        finish();
     }
 }

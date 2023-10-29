@@ -1,12 +1,14 @@
 package com.example.myrestaurants_v1;
 
-import static com.example.myrestaurants_v1.MyApp.restaurantList;
+
+import static com.example.myrestaurants_v1.MyApp.restaurantDBHelper;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -14,16 +16,26 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myrestaurants_v1.Model.Restaurant;
+import com.example.myrestaurants_v1.Model.RestaurantsListViewModel;
 import com.example.myrestaurants_v1.databinding.RvItemBinding;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
     private Context context;
+    private RestaurantsListViewModel restaurantList;
 
     public MyRecyclerViewAdapter(Context context) {
         this.context = context;
+        restaurantList = new ViewModelProvider((ViewModelStoreOwner) context).get(RestaurantsListViewModel.class);
+        restaurantList.setRestaurantList(restaurantDBHelper.getAllRestaurants());
+    }
+
+    public void refresh() {
+        restaurantList.setRestaurantList(restaurantDBHelper.getAllRestaurants());
     }
 
     class RestaurantListVH extends RecyclerView.ViewHolder{
@@ -87,12 +99,13 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
 
     private void editRestaurant(int position) {
         Intent intent = new Intent(context, EditRestaurantActivity.class);
-        intent.putExtra("index", position);
+        intent.putExtra("id_", restaurantList.getRestaurantList().get(position).getId_());
         context.startActivity(intent);
     }
 
     private void deleteRestaurant(Restaurant restaurant, int index) {
         restaurantList.remove(restaurant);
+        restaurantDBHelper.deleteRestaurant(restaurant.getId_());
         notifyItemRemoved(index);
         notifyItemRangeChanged(index, restaurantList.getRestaurantList().size() - index);
     }

@@ -89,16 +89,33 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
     }
 
     public int restaurantCount(){
-        /*
-        String query = "select * from restaurants";
-        Cursor cursor = getReadableDatabase().rawQuery(query, null);
-        return cursor.getCount();
-         */
         String query = "select count(*) from restaurants";
         Cursor cursor = getReadableDatabase().rawQuery(query, null);
 
         cursor.moveToFirst();
         int count = cursor.getInt(0);
         return count;
+    }
+
+    public Restaurant getRestaurant(long id) {
+        String query = "select * from restaurants where _id = " + id;
+        Cursor cursor = getReadableDatabase().rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        long id_ = cursor.getLong(0);
+        String name = cursor.getString(1);
+        String address = cursor.getString(2);
+        boolean onTable = cursor.getInt(3) == 1;
+        boolean delivery = cursor.getInt(4) == 1;
+        boolean takeAway = cursor.getInt(5) == 1;
+        String phone = cursor.getString(6);
+        String web = cursor.getString(7);
+        Restaurant restaurant = new Restaurant(name, address, phone, web);
+        restaurant.setDelivery(delivery);
+        restaurant.setTakeAway(takeAway);
+        restaurant.setOnTable(onTable);
+        restaurant.setId_(id_);
+        return restaurant;
     }
 }

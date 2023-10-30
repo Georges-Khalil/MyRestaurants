@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">مطاعمي</string>
+    <string name="add_name">اسم</string>
+    <string name="add_address">عنوان</string>
+    <string name="add_phone">هاتف</string>
+    <string name="add_web">موقع إلكتروني</string>
+    <string name="add_type">نوع الخدمة</string>
+    <string name="add_on_table">على الطاولة</string>
+    <string name="add_delivery">توصيل</string>
+    <string name="add_take_away">اكلات سريعه</string>
+    <string name="add_add">يضيف</string>
+    <string name="add_activity_toast">تمت إضافة المطعم</string>
+</resources>

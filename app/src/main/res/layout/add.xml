@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
             android:layout_weight="1"
-            android:text="Name"
+            android:text="@string/add_name"
             android:textSize="18sp" />
         <EditText
             android:id="@+id/name"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
             android:layout_weight="1"
-            android:text="Address"
+            android:text="@string/add_address"
             android:textSize="18sp" />
         <EditText
             android:id="@+id/address"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
             android:layout_weight="1"
-            android:text="Phone"
+            android:text="@string/add_phone"
             android:textSize="18sp" />
         <EditText
             android:id="@+id/phone"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
             android:layout_weight="1"
-            android:text="Web"
+            android:text="@string/add_web"
             android:textSize="18sp" />
         <EditText
             android:id="@+id/web"
@@ -96,7 +96,7 @@
             android:layout_marginBottom="50dp"
             android:textSize="18sp"
             android:layout_marginTop="10dp"
-            android:text="Type" />
+            android:text="@string/add_type" />
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="4"
@@ -108,19 +108,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:text="on Table"/>
+                android:text="@string/add_on_table"/>
             <CheckBox
                 android:id="@+id/delivery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:text="Delivery"/>
+                android:text="@string/add_delivery"/>
             <CheckBox
                 android:id="@+id/takeaway"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:text="Take Away"/>
+                android:text="@string/add_take_away"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -138,5 +138,5 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:textSize="18sp"
-        android:text="Add" />
+        android:text="@string/add_add" />
 </androidx.appcompat.widget.LinearLayoutCompat>

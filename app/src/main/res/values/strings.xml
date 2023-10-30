@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">My Restaurants</string>
+    <string name="add_name">Name</string>
+    <string name="add_address">Address</string>
+    <string name="add_phone">Phone</string>
+    <string name="add_web">Web</string>
+    <string name="add_type">Type</string>
+    <string name="add_on_table">on Table</string>
+    <string name="add_delivery">Delivery</string>
+    <string name="add_take_away">Take Away</string>
+    <string name="add_add">Add</string>
+    <string name="add_activity_toast">Restaurant Added</string>
 </resources>

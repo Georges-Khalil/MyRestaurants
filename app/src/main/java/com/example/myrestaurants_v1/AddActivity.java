@@ -62,6 +62,6 @@ public class AddActivity extends BaseActivity {
         binding.name.requestFocus();
 
         restaurantDBHelper.insert(restaurant);
-        Snackbar.make(binding.getRoot(), "Restaurant Added", Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(binding.getRoot(), R.string.add_activity_toast, Snackbar.LENGTH_SHORT).show();
     }
 }

@@ -11,6 +11,15 @@ public class Restaurant{
     private boolean onTable;
     private boolean delivery;
     private boolean takeAway;
+    private float rating;
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
 
     public long getId_() {
         return id_;
@@ -76,7 +85,7 @@ public class Restaurant{
         this.takeAway = takeAway;
     }
 
-    public Restaurant(String name, String address, String phone, String web) {
+    public Restaurant(String name, String address, String phone, String web, float rating) {
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -84,6 +93,7 @@ public class Restaurant{
         this.onTable = true;
         this.delivery = false;
         this.takeAway = false;
+        this.rating = rating;
     }
 
     @NonNull

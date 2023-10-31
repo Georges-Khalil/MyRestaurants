@@ -29,6 +29,7 @@ public class EditRestaurantActivity extends BaseActivity{
         binding.editLayout.onTable.setChecked(restaurant.isOnTable());
         binding.editLayout.delivery.setChecked(restaurant.isDelivery());
         binding.editLayout.takeaway.setChecked(restaurant.isTakeAway());
+        binding.editLayout.ratingBar.setRating(restaurant.getRating());
         binding.editLayout.btAdd.setText("Update");
 
         binding.editLayout.btAdd.setOnClickListener(v -> updateRestaurant(restaurant));
@@ -42,6 +43,7 @@ public class EditRestaurantActivity extends BaseActivity{
         boolean onTable = binding.editLayout.onTable.isChecked();
         boolean delivery = binding.editLayout.delivery.isChecked();
         boolean takeAway = binding.editLayout.takeaway.isChecked();
+        float rating = binding.editLayout.ratingBar.getRating();
 
         if(name.length() < 3){
             binding.editLayout.name.setText("");
@@ -59,6 +61,10 @@ public class EditRestaurantActivity extends BaseActivity{
             Toast.makeText(this,"Please choose at least one type", Toast.LENGTH_SHORT).show();
             return;
         }
+        if(rating == 0){
+            Toast.makeText(this,"Please choose rating", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         restaurant.setName(name);
         restaurant.setAddress(address);
@@ -67,6 +73,7 @@ public class EditRestaurantActivity extends BaseActivity{
         restaurant.setOnTable(onTable);
         restaurant.setDelivery(delivery);
         restaurant.setTakeAway(takeAway);
+        restaurant.setRating(rating);
 
         restaurantDBHelper.updateRestaurant(restaurant);
         finish();

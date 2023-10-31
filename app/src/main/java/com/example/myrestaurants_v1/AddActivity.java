@@ -29,6 +29,7 @@ public class AddActivity extends BaseActivity {
         boolean onTable = binding.onTable.isChecked();
         boolean delivery = binding.delivery.isChecked();
         boolean takeAway = binding.takeaway.isChecked();
+        float rating = binding.ratingBar.getRating();
 
         if(name.length() < 3){
             binding.name.setText("");
@@ -46,8 +47,12 @@ public class AddActivity extends BaseActivity {
             Toast.makeText(this,"Please choose at least one type", Toast.LENGTH_SHORT).show();
             return;
         }
+        if(rating == 0){
+            Toast.makeText(this,"Please choose rating", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        Restaurant restaurant = new Restaurant(name, address, phone, web);
+        Restaurant restaurant = new Restaurant(name, address, phone, web, rating);
         restaurant.setOnTable(onTable);
         restaurant.setDelivery(delivery);
         restaurant.setTakeAway(takeAway);
@@ -59,6 +64,7 @@ public class AddActivity extends BaseActivity {
         binding.onTable.setChecked(true);
         binding.delivery.setChecked(false);
         binding.takeaway.setChecked(false);
+        binding.ratingBar.setRating(0);
         binding.name.requestFocus();
 
         restaurantDBHelper.insert(restaurant);

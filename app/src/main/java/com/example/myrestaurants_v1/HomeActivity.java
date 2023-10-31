@@ -48,18 +48,18 @@ public class HomeActivity extends BaseActivity {
 
     public void addSomeRestaurants() {
         Restaurant restaurant;
-        restaurant = new Restaurant("McDonalds", "Beirut Highway-LeMall, Dbayeh","01 492 703","https://mcdonalds.com.lb");
+        restaurant = new Restaurant("McDonalds", "Beirut Highway-LeMall, Dbayeh","01 492 703","https://mcdonalds.com.lb", 4);
         restaurant.setDelivery(true);
         restaurantDBHelper.insert(restaurant);
-        restaurant = new Restaurant("KFC", "Tripoli, Boulvard, El Bahsas","06 438 632","https://global.kfc.com/");
+        restaurant = new Restaurant("KFC", "Tripoli, Boulvard, El Bahsas","06 438 632","https://global.kfc.com/", 3);
         restaurantDBHelper.insert(restaurant);
         restaurant.setTakeAway(true);restaurant.setTakeAway(true);
-        restaurant = new Restaurant("Dip N' Dip", "Beirut"," 01 370 120","https://dipndip.com/");
+        restaurant = new Restaurant("Dip N' Dip", "Beirut"," 01 370 120","https://dipndip.com/", 5);
         restaurantDBHelper.insert(restaurant);
         restaurant.setDelivery(true);
-        restaurant = new Restaurant("CrepAway", "Byblos, Main Highway Entrance","09 943 777","https://crepaway.com/");
+        restaurant = new Restaurant("CrepAway", "Byblos, Main Highway Entrance","09 943 777","https://crepaway.com/", 4);
         restaurantDBHelper.insert(restaurant);
-        restaurant = new Restaurant("Roadster", "Batroun, Main Road","06 740 982","https://roadsterdiner.com/");
+        restaurant = new Restaurant("Roadster", "Batroun, Main Road","06 740 982","https://roadsterdiner.com/",1);
         restaurantDBHelper.insert(restaurant);
     }
 

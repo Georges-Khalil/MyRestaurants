@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="410dp"
-    android:layout_height="240dp"
+    android:layout_height="270dp"
     android:id="@+id/drawer_layout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -135,27 +135,53 @@
             app:layout_constraintTop_toBottomOf="@+id/web"
             app:srcCompat="@drawable/baseline_delivery_dining_24" />
 
+        <TextView
+            android:id="@+id/ratingBarText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Rating"
+            android:textColor="@color/pink"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/serviceText" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-60dp"
+            android:layout_marginTop="-10dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressTint="@color/pink"
+            android:rating="3.0"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/onTable" />
+
         <Button
             android:id="@+id/call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="Call"
             app:layout_constraintEnd_toStartOf="@+id/browse"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/takeAway" />
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
         <Button
             android:id="@+id/browse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="Browse"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/call"
-            app:layout_constraintTop_toBottomOf="@+id/takeAway" />
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
         <View
             android:layout_width="match_parent"

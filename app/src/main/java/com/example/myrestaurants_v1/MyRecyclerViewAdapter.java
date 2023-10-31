@@ -63,6 +63,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
         holder.binding.address.setText(restaurant.getAddress());
         holder.binding.phone.setText(restaurant.getPhone());
         holder.binding.web.setText(restaurant.getWeb());
+        holder.binding.ratingBar.setRating(restaurant.getRating());
 
         if(restaurant.isOnTable()){
             holder.binding.onTable.setImageResource(R.drawable.baseline_table_restaurant_24);

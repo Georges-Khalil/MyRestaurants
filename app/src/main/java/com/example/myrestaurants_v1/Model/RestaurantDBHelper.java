@@ -10,7 +10,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 public class RestaurantDBHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "myrestaurants.db";
+    private static final String DATABASE_NAME = "restaurants.db";
     private static final int SCHEMA_VERSION = 2;
 
     public RestaurantDBHelper(Context context) {
@@ -20,7 +20,7 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE restaurants (_id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT, address TEXT, onTable INTEGER, delivery INTEGER, takeAway INTEGER, phone TEXT, web TEXT);");
+        db.execSQL("CREATE TABLE restaurants (_id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT, address TEXT, onTable INTEGER, delivery INTEGER, takeAway INTEGER, phone TEXT, web TEXT, rating REAL);");
         Log.d("database", "onCreate");
     }
 
@@ -40,6 +40,7 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
         contentValues.put("onTable", restaurant.isOnTable());
         contentValues.put("delivery", restaurant.isDelivery());
         contentValues.put("takeAway", restaurant.isTakeAway());
+        contentValues.put("rating", restaurant.getRating());
 
         long id = getWritableDatabase().insert("restaurants", null, contentValues);
         return id;
@@ -61,7 +62,8 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
             boolean takeAway = cursor.getInt(5) == 1;
             String phone = cursor.getString(6);
             String web = cursor.getString(7);
-            Restaurant restaurant = new Restaurant(name, address, phone, web);
+            float rating = cursor.getFloat(8);
+            Restaurant restaurant = new Restaurant(name, address, phone, web, rating);
             restaurant.setDelivery(delivery);
             restaurant.setTakeAway(takeAway);
             restaurant.setOnTable(onTable);
@@ -81,6 +83,7 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
         contentValues.put("onTable", restaurant.isOnTable());
         contentValues.put("delivery", restaurant.isDelivery());
         contentValues.put("takeAway", restaurant.isTakeAway());
+        contentValues.put("rating", restaurant.getRating());
         getWritableDatabase().update("restaurants", contentValues, "_id=?", new String[]{restaurant.getId_()+""});
     }
 
@@ -111,7 +114,8 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
         boolean takeAway = cursor.getInt(5) == 1;
         String phone = cursor.getString(6);
         String web = cursor.getString(7);
-        Restaurant restaurant = new Restaurant(name, address, phone, web);
+        float rating = cursor.getFloat(8);
+        Restaurant restaurant = new Restaurant(name, address, phone, web, rating);
         restaurant.setDelivery(delivery);
         restaurant.setTakeAway(takeAway);
         restaurant.setOnTable(onTable);

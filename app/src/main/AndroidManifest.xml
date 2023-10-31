@@ -34,6 +34,10 @@
             android:name=".EditRestaurantActivity"
             android:label="Edit Restaurant">
         </activity>
+        <activity
+            android:name=".CategoryActivity"
+            android:label="Categories">
+        </activity>
     </application>
     <uses-feature
         android:name="android.hardware.telephony"

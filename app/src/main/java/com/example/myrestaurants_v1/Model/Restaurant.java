@@ -12,6 +12,15 @@ public class Restaurant{
     private boolean delivery;
     private boolean takeAway;
     private float rating;
+    private long category_id;
+
+    public long getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(long category_id) {
+        this.category_id = category_id;
+    }
 
     public float getRating() {
         return rating;
@@ -94,6 +103,7 @@ public class Restaurant{
         this.delivery = false;
         this.takeAway = false;
         this.rating = rating;
+        this.category_id = 1;
     }
 
     @NonNull

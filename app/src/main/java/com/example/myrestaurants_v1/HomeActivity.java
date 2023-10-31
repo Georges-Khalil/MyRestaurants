@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.myrestaurants_v1.Model.Category;
 import com.example.myrestaurants_v1.Model.Restaurant;
 import com.example.myrestaurants_v1.databinding.HomeBinding;
 
@@ -43,10 +44,16 @@ public class HomeActivity extends BaseActivity {
             Intent AddActivity = new Intent(this, AddActivity.class);
             startActivity(AddActivity);
         }
+        if(item.getItemId()==R.id.category){
+            Intent CategoryActivity = new Intent(this, CategoryActivity.class);
+            startActivity(CategoryActivity);
+        }
         return true;
     }
 
     public void addSomeRestaurants() {
+        Category category = new Category("not set");
+        restaurantDBHelper.insertCategory(category);
         Restaurant restaurant;
         restaurant = new Restaurant("McDonalds", "Beirut Highway-LeMall, Dbayeh","01 492 703","https://mcdonalds.com.lb", 4);
         restaurant.setDelivery(true);

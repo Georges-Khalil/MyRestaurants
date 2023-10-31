@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/category"
+        android:icon="@drawable/ic_category"
+        app:showAsAction="always"
+        android:title="Category"/>
+
+    <item
         android:id="@+id/listView"
         android:icon="@drawable/ic_list_view"
         app:showAsAction="always"

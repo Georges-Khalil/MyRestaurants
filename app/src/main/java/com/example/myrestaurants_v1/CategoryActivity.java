@@ -8,11 +8,8 @@ import android.widget.Toast;
 import com.example.myrestaurants_v1.Model.Category;
 import com.example.myrestaurants_v1.databinding.CategoryBinding;
 
-import java.util.ArrayList;
-
 public class CategoryActivity extends BaseActivity{
     CategoryBinding binding;
-    ArrayList<Category> categoryList;
     CategoryAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -20,8 +17,7 @@ public class CategoryActivity extends BaseActivity{
         binding = CategoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        categoryList = restaurantDBHelper.getAllCategories();
-        adapter = new CategoryAdapter(this, categoryList);
+        adapter = new CategoryAdapter(this, restaurantDBHelper.getAllCategories(), binding);
         binding.categoryList.setAdapter(adapter);
 
         binding.addCategoryButton.setOnClickListener(v -> add_category());
@@ -37,8 +33,8 @@ public class CategoryActivity extends BaseActivity{
         }
         Category category = new Category(specialty);
         restaurantDBHelper.insertCategory(category);
-        categoryList.add(category);
         binding.newCategoryField.setText("");
-        adapter.notifyDataSetChanged();
+        adapter = new CategoryAdapter(this, restaurantDBHelper.getAllCategories(), binding);
+        binding.categoryList.setAdapter(adapter);
     }
 }

@@ -10,16 +10,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.myrestaurants_v1.Model.Category;
+import com.example.myrestaurants_v1.databinding.CategoryBinding;
 import com.example.myrestaurants_v1.databinding.CategoryItemBinding;
 
 import java.util.ArrayList;
 
 public class CategoryAdapter extends ArrayAdapter<Category> {
     Context context;
+    CategoryBinding binding;
 
-    public CategoryAdapter(Context context, ArrayList<Category> categories) {
+    public CategoryAdapter(Context context, ArrayList<Category> categories, CategoryBinding binding) {
         super(context, 0, categories);
         this.context = context;
+        this.binding = binding;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -37,14 +40,23 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
 
         binding.categorySpecialty.setText(category.getSpecialty());
 
-        binding.editButton.setOnClickListener(v -> edit_category());
+        binding.editButton.setOnClickListener(v -> edit_category(category));
 
         binding.deleteButton.setOnClickListener(v -> delete_category(category));
 
         return convertView;
     }
 
-    private void edit_category() {
+    private void edit_category(Category category) {
+        String newSpecialty = binding.newCategoryField.getText().toString();
+        if(newSpecialty.length() < 3){
+            Toast.makeText(context, "Enter a valid speciality", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        category.setSpecialty(newSpecialty);
+        restaurantDBHelper.updateCategory(category);
+        binding.newCategoryField.setText("");
+        notifyDataSetChanged();
     }
 
     private void delete_category(Category category){

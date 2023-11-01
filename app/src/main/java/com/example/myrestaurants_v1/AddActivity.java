@@ -3,8 +3,10 @@ package com.example.myrestaurants_v1;
 import static com.example.myrestaurants_v1.MyApp.restaurantDBHelper;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.example.myrestaurants_v1.Model.Category;
 import com.example.myrestaurants_v1.Model.Restaurant;
 import com.example.myrestaurants_v1.databinding.AddBinding;
 import com.google.android.material.snackbar.Snackbar;
@@ -17,12 +19,10 @@ public class AddActivity extends BaseActivity {
         binding = AddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.onTable.setChecked(true);
-        /*
-        Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<Category> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+
+        ArrayAdapter<Category> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, restaurantDBHelper.getAllCategories());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-         */
+        binding.spinner.setAdapter(adapter);
 
         binding.btAdd.setOnClickListener(v -> add_restaurant());
     }
@@ -36,6 +36,7 @@ public class AddActivity extends BaseActivity {
         boolean delivery = binding.delivery.isChecked();
         boolean takeAway = binding.takeaway.isChecked();
         float rating = binding.ratingBar.getRating();
+        Category category = (Category) binding.spinner.getSelectedItem();
 
         if(name.length() < 3){
             binding.name.setText("");
@@ -62,6 +63,7 @@ public class AddActivity extends BaseActivity {
         restaurant.setOnTable(onTable);
         restaurant.setDelivery(delivery);
         restaurant.setTakeAway(takeAway);
+        restaurant.setCategory_id(category.getId_());
 
         binding.name.setText("");
         binding.address.setText("");
@@ -71,6 +73,7 @@ public class AddActivity extends BaseActivity {
         binding.delivery.setChecked(false);
         binding.takeaway.setChecked(false);
         binding.ratingBar.setRating(0);
+        binding.spinner.setSelection(0);
         binding.name.requestFocus();
 
         restaurantDBHelper.insert(restaurant);

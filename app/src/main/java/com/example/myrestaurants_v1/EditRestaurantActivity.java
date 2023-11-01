@@ -4,9 +4,12 @@ import static com.example.myrestaurants_v1.MyApp.restaurantDBHelper;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.example.myrestaurants_v1.Model.Category;
 import com.example.myrestaurants_v1.Model.Restaurant;
+import com.example.myrestaurants_v1.Model.RestaurantDBHelper;
 import com.example.myrestaurants_v1.databinding.EditBinding;
 
 public class EditRestaurantActivity extends BaseActivity{
@@ -17,6 +20,10 @@ public class EditRestaurantActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         binding = EditBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        ArrayAdapter<Category> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, restaurantDBHelper.getAllCategories());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.editLayout.spinner.setAdapter(adapter);
 
         Intent intent = getIntent();
         long id = intent.getLongExtra("id_", -1);
@@ -30,6 +37,7 @@ public class EditRestaurantActivity extends BaseActivity{
         binding.editLayout.delivery.setChecked(restaurant.isDelivery());
         binding.editLayout.takeaway.setChecked(restaurant.isTakeAway());
         binding.editLayout.ratingBar.setRating(restaurant.getRating());
+        binding.editLayout.spinner.setSelection(adapter.getPosition(restaurantDBHelper.getCategory(restaurant.getCategory_id())));
         binding.editLayout.btAdd.setText("Update");
 
         binding.editLayout.btAdd.setOnClickListener(v -> updateRestaurant(restaurant));
@@ -44,6 +52,7 @@ public class EditRestaurantActivity extends BaseActivity{
         boolean delivery = binding.editLayout.delivery.isChecked();
         boolean takeAway = binding.editLayout.takeaway.isChecked();
         float rating = binding.editLayout.ratingBar.getRating();
+        Category category = (Category) binding.editLayout.spinner.getSelectedItem();
 
         if(name.length() < 3){
             binding.editLayout.name.setText("");
@@ -74,6 +83,7 @@ public class EditRestaurantActivity extends BaseActivity{
         restaurant.setDelivery(delivery);
         restaurant.setTakeAway(takeAway);
         restaurant.setRating(rating);
+        restaurant.setCategory_id(category.getId_());
 
         restaurantDBHelper.updateRestaurant(restaurant);
         finish();

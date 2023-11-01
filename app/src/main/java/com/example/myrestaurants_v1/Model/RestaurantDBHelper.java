@@ -175,4 +175,17 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
         restaurant.setCategory_id(category_id);
         return restaurant;
     }
+
+    public Category getCategory(long id){
+        String query = "select * from category where _id = " + id;
+        Cursor cursor = getReadableDatabase().rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        long id_ = cursor.getLong(0);
+        String specialty = cursor.getString(1);
+        Category category = new Category(specialty);
+        category.setId_(id_);
+        return category;
+    }
 }

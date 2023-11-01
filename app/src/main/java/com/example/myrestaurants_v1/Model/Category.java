@@ -26,9 +26,17 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category{" +
-                "id_=" + id_ +
-                ", specialty='" + specialty + '\'' +
-                '}';
+        return specialty;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Category category = (Category) obj;
+        return id_ == category.id_;
     }
 }

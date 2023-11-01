@@ -13,13 +13,15 @@ import java.util.ArrayList;
 public class CategoryActivity extends BaseActivity{
     CategoryBinding binding;
     ArrayList<Category> categoryList;
+    CategoryAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         binding = CategoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         categoryList = restaurantDBHelper.getAllCategories();
-        CategoryAdapter adapter = new CategoryAdapter(this, categoryList);
+        adapter = new CategoryAdapter(this, categoryList);
         binding.categoryList.setAdapter(adapter);
 
         binding.addCategoryButton.setOnClickListener(v -> add_category());
@@ -37,5 +39,6 @@ public class CategoryActivity extends BaseActivity{
         restaurantDBHelper.insertCategory(category);
         categoryList.add(category);
         binding.newCategoryField.setText("");
+        adapter.notifyDataSetChanged();
     }
 }

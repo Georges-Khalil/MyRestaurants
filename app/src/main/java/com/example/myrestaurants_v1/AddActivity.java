@@ -17,6 +17,12 @@ public class AddActivity extends BaseActivity {
         binding = AddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.onTable.setChecked(true);
+        /*
+        Spinner spinner = findViewById(R.id.spinner);
+        ArrayAdapter<Category> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+         */
 
         binding.btAdd.setOnClickListener(v -> add_restaurant());
     }

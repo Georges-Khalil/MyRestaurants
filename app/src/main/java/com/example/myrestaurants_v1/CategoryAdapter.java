@@ -26,6 +26,7 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         Category category = getItem(position);
 
         CategoryItemBinding binding;
+
         if (convertView == null) {
             binding = CategoryItemBinding.inflate(LayoutInflater.from(getContext()), parent, false);
             convertView = binding.getRoot();
@@ -36,25 +37,24 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
 
         binding.categorySpecialty.setText(category.getSpecialty());
 
-        binding.editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle edit action here
-            }
-        });
+        binding.editButton.setOnClickListener(v -> edit_category());
 
-        binding.deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    restaurantDBHelper.deleteCategory(category.getId_());
-                } catch (Exception e) {
-                    Toast.makeText(context,"Category contains restaurants", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        binding.deleteButton.setOnClickListener(v -> delete_category(category));
 
         return convertView;
+    }
+
+    private void edit_category() {
+    }
+
+    private void delete_category(Category category){
+        try {
+            restaurantDBHelper.deleteCategory(category.getId_());
+            remove(category);
+            notifyDataSetChanged();
+        } catch (Exception e) {
+            Toast.makeText(context,"Category contains restaurants", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

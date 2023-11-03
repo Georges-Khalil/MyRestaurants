@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.example.myrestaurants_v1.Model.Category;
 import com.example.myrestaurants_v1.Model.Restaurant;
-import com.example.myrestaurants_v1.Model.RestaurantDBHelper;
 import com.example.myrestaurants_v1.databinding.EditBinding;
 
 public class EditRestaurantActivity extends BaseActivity{

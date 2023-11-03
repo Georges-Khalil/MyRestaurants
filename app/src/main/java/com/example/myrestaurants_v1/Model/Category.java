@@ -1,5 +1,7 @@
 package com.example.myrestaurants_v1.Model;
 
+import androidx.annotation.NonNull;
+
 public class Category {
     private long id_;
     private String specialty;
@@ -24,6 +26,7 @@ public class Category {
         this.specialty = specialty;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return specialty;

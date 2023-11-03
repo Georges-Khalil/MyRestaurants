@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.example.myrestaurants_v1.Model.Category;
 import com.example.myrestaurants_v1.databinding.CategoryBinding;
 import com.example.myrestaurants_v1.databinding.CategoryItemBinding;
@@ -25,7 +27,8 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         this.binding = binding;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    @NonNull
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         Category category = getItem(position);
 
         CategoryItemBinding binding;

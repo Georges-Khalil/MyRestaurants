@@ -38,6 +38,10 @@
             android:name=".CategoryActivity"
             android:label="Categories">
         </activity>
+        <activity
+            android:name=".FilterRestaurants"
+            android:label="Filter Restaurants">
+        </activity>
     </application>
     <uses-feature
         android:name="android.hardware.telephony"

@@ -1,5 +1,6 @@
 package com.example.myrestaurants_v1;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -35,6 +36,13 @@ public class ViewActivity extends BaseActivity {
         }
 
         listBinding.recycleView.setAdapter(myRecyclerViewAdapter);
+
+        listBinding.filter.setOnClickListener(v -> filter());
+    }
+
+    private void filter() {
+        Intent intent = new Intent(this, FilterRestaurants.class);
+        startActivity(intent);
     }
 
     @Override

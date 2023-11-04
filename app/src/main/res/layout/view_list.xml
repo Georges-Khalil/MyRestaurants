@@ -5,6 +5,14 @@
     android:orientation="vertical"
     android:padding="20dp">
 
+    <ImageView
+        android:id="@+id/filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_filter_alt_24"
+        android:layout_gravity="end"
+        android:layout_marginBottom="5dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
         android:scrollbars="vertical"

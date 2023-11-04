@@ -24,6 +24,8 @@ import com.example.myrestaurants_v1.Model.Restaurant;
 import com.example.myrestaurants_v1.Model.RestaurantsListViewModel;
 import com.example.myrestaurants_v1.databinding.RvItemBinding;
 
+import java.util.ArrayList;
+
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
     private Context context;
     private RestaurantsListViewModel restaurantList;
@@ -36,6 +38,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
 
     public void refresh() {
         restaurantList.setRestaurantList(restaurantDBHelper.getAllRestaurants());
+    }
+
+    public void setRestaurantList(ArrayList<Restaurant> filteredRestaurantList) {
+        restaurantList.setRestaurantList(filteredRestaurantList);
     }
 
     class RestaurantListVH extends RecyclerView.ViewHolder{

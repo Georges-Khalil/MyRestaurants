@@ -2,7 +2,9 @@ package com.example.myrestaurants_v1;
 
 import static com.example.myrestaurants_v1.MyApp.restaurantDBHelper;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.example.myrestaurants_v1.Model.Category;
@@ -42,89 +44,18 @@ public class FilterRestaurants extends BaseActivity{
         float rating = binding.filterLayout.ratingBar.getRating();
         Category category = (Category) binding.filterLayout.spinner.getSelectedItem();
 
-        ArrayList<Restaurant> restaurantList = restaurantDBHelper.getAllRestaurants();
-
-        if(name.length() > 0){
-            for(int i=0; i<restaurantList.size(); i++){
-                if(!restaurantList.get(i).getName().contains(name)){
-                    restaurantList.remove(i);
-                    i--;
-                }
-            }
-        }
-
-        if(address.length() > 0){
-            for(int i=0; i<restaurantList.size(); i++){
-                if(!restaurantList.get(i).getAddress().contains(address)){
-                    restaurantList.remove(i);
-                    i--;
-                }
-            }
-        }
-
-        if(phone.length() > 0){
-            for(int i=0; i<restaurantList.size(); i++){
-                if(!restaurantList.get(i).getPhone().contains(phone)){
-                    restaurantList.remove(i);
-                    i--;
-                }
-            }
-        }
-
-        if(web.length() > 0){
-            for(int i=0; i<restaurantList.size(); i++){
-                if(!restaurantList.get(i).getWeb().contains(web)){
-                    restaurantList.remove(i);
-                    i--;
-                }
-            }
-        }
-
-        if(onTable){
-            for(int i=0; i<restaurantList.size(); i++){
-                if(!restaurantList.get(i).isOnTable()){
-                    restaurantList.remove(i);
-                    i--;
-                }
-            }
-        }
-
-        if(delivery){
-            for(int i=0; i<restaurantList.size(); i++){
-                if(!restaurantList.get(i).isDelivery()){
-                    restaurantList.remove(i);
-                    i--;
-                }
-            }
-        }
-
-        if(takeAway){
-            for(int i=0; i<restaurantList.size(); i++){
-                if(!restaurantList.get(i).isTakeAway()){
-                    restaurantList.remove(i);
-                    i--;
-                }
-            }
-        }
-
-        if(rating > 0){
-            for(int i=0; i<restaurantList.size(); i++){
-                if(restaurantList.get(i).getRating() < rating){
-                    restaurantList.remove(i);
-                    i--;
-                }
-            }
-        }
-
-        if(!Objects.equals(category.getSpecialty(), "All")){
-            for(int i=0; i<restaurantList.size(); i++){
-                if(restaurantList.get(i).getCategory_id() != category.getId_()){
-                    restaurantList.remove(i);
-                    i--;
-                }
-            }
-        }
-
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("name", name);
+        resultIntent.putExtra("address", address);
+        resultIntent.putExtra("phone", phone);
+        resultIntent.putExtra("web", web);
+        resultIntent.putExtra("onTable", onTable);
+        resultIntent.putExtra("delivery", delivery);
+        resultIntent.putExtra("takeAway", takeAway);
+        resultIntent.putExtra("rating", rating);
+        resultIntent.putExtra("category_speciality", category.getSpecialty());
+        resultIntent.putExtra("category_id", category.getId_());
+        setResult(RESULT_OK, resultIntent);
         finish();
     }
 }

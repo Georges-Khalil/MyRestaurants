@@ -8,8 +8,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -21,7 +19,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.myrestaurants_v1.Model.Restaurant;
 import com.example.myrestaurants_v1.databinding.ViewListBinding;
 import android.Manifest;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -53,24 +50,21 @@ public class ViewActivity extends BaseActivity {
 
         resultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == Activity.RESULT_OK) {
-                            Intent data = result.getData();
-                            if (data != null) {
-                                String name = data.getStringExtra("name");
-                                String address = data.getStringExtra("address");
-                                String phone = data.getStringExtra("phone");
-                                String web = data.getStringExtra("web");
-                                boolean onTable = data.getBooleanExtra("onTable", false);
-                                boolean delivery = data.getBooleanExtra("delivery", false);
-                                boolean takeAway = data.getBooleanExtra("takeAway", false);
-                                float rating = data.getFloatExtra("rating", 0);
-                                String category_speciality = data.getStringExtra("category_speciality");
-                                long category_id = data.getLongExtra("category_id", 0);
-                                filterApply(name, address, phone, web, onTable, delivery, takeAway, rating, category_speciality, category_id);
-                            }
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            String name = data.getStringExtra("name");
+                            String address = data.getStringExtra("address");
+                            String phone = data.getStringExtra("phone");
+                            String web = data.getStringExtra("web");
+                            boolean onTable = data.getBooleanExtra("onTable", false);
+                            boolean delivery = data.getBooleanExtra("delivery", false);
+                            boolean takeAway = data.getBooleanExtra("takeAway", false);
+                            float rating = data.getFloatExtra("rating", 0);
+                            String category_speciality = data.getStringExtra("category_speciality");
+                            long category_id = data.getLongExtra("category_id", 0);
+                            filterApply(name, address, phone, web, onTable, delivery, takeAway, rating, category_speciality, category_id);
                         }
                     }
                 }
@@ -193,7 +187,7 @@ public class ViewActivity extends BaseActivity {
 
     public void onResume(){
         super.onResume();
-        //myRecyclerViewAdapter.refresh();
+        myRecyclerViewAdapter.refresh();
         listBinding.recycleView.setAdapter(myRecyclerViewAdapter);
     }
 }

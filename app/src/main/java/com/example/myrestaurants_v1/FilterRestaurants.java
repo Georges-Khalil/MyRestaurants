@@ -4,15 +4,12 @@ import static com.example.myrestaurants_v1.MyApp.restaurantDBHelper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.example.myrestaurants_v1.Model.Category;
-import com.example.myrestaurants_v1.Model.Restaurant;
 import com.example.myrestaurants_v1.databinding.FilterBinding;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class FilterRestaurants extends BaseActivity{
     FilterBinding binding;

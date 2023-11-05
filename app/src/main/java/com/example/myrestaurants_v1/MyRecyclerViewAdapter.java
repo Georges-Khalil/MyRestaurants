@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -37,7 +36,9 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
     }
 
     public void refresh() {
-        restaurantList.setRestaurantList(restaurantDBHelper.getAllRestaurants());
+        for(int i=0; i<restaurantList.getRestaurantList().size(); i++){
+            restaurantList.getRestaurantList().set(i, restaurantDBHelper.getRestaurant(restaurantList.getRestaurantList().get(i).getId_()));
+        }
     }
 
     public void setRestaurantList(ArrayList<Restaurant> filteredRestaurantList) {

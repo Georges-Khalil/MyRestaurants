@@ -1,12 +1,20 @@
 package com.example.myrestaurants_v1;
 
+import static com.example.myrestaurants_v1.MyApp.PrefFileName;
+import static com.example.myrestaurants_v1.MyApp.PrefFile_key_lang;
 import static com.example.myrestaurants_v1.MyApp.restaurantDBHelper;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.os.LocaleListCompat;
 
 import com.example.myrestaurants_v1.Model.Category;
 import com.example.myrestaurants_v1.Model.Restaurant;
@@ -17,6 +25,14 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences settings = this.getSharedPreferences(PrefFileName, Context.MODE_PRIVATE);
+        String language = settings.getString(PrefFile_key_lang, null);
+        Toast.makeText(this, "stored language: "+language, Toast.LENGTH_SHORT).show();
+        if(language != null) {
+            setLocalLanguage(language);
+        }
+
         if (restaurantDBHelper.restaurantCount() == 0) {
             addSomeRestaurants();
         }
@@ -26,6 +42,18 @@ public class HomeActivity extends BaseActivity {
 
         String message = "Total Restaurants: " + restaurantDBHelper.restaurantCount();
         homeBinding.size.setText(message);
+    }
+
+    private void setLocalLanguage(String language) {
+        String localeName;
+        if(language.equals("english")){
+            localeName = "us-USA";
+        }
+        else{
+            localeName = "ar-LB";
+        }
+        LocaleListCompat applocale = LocaleListCompat.forLanguageTags(localeName);
+        AppCompatDelegate.setApplicationLocales(applocale);
     }
 
     @Override
@@ -48,7 +76,22 @@ public class HomeActivity extends BaseActivity {
             Intent CategoryActivity = new Intent(this, CategoryActivity.class);
             startActivity(CategoryActivity);
         }
+        if(item.getItemId()==R.id.AR){
+            setLocalLanguage("arabic");
+            save_language("arabic");
+        }
+        if(item.getItemId()==R.id.EN){
+            setLocalLanguage("english");
+            save_language("english");
+        }
         return true;
+    }
+
+    public void save_language(String language){
+        SharedPreferences settings = this.getSharedPreferences(PrefFileName, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(PrefFile_key_lang, language);
+        editor.commit();
     }
 
     public void addSomeRestaurants() {

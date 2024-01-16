@@ -30,7 +30,7 @@
             android:id="@+id/new_category_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter speciality name to add or edit"/>
+            android:hint="Enter category name to add or edit"/>
 
         <Button
             android:id="@+id/add_category_button"

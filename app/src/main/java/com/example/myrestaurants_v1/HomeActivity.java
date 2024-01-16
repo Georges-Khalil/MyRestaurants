@@ -26,12 +26,14 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /*
         SharedPreferences settings = this.getSharedPreferences(PrefFileName, Context.MODE_PRIVATE);
         String language = settings.getString(PrefFile_key_lang, null);
         Toast.makeText(this, "stored language: "+language, Toast.LENGTH_SHORT).show();
         if(language != null) {
             setLocalLanguage(language);
         }
+        */
 
         if (restaurantDBHelper.restaurantCount() == 0) {
             addSomeRestaurants();
@@ -76,6 +78,7 @@ public class HomeActivity extends BaseActivity {
             Intent CategoryActivity = new Intent(this, CategoryActivity.class);
             startActivity(CategoryActivity);
         }
+        /*
         if(item.getItemId()==R.id.AR){
             setLocalLanguage("arabic");
             save_language("arabic");
@@ -84,6 +87,7 @@ public class HomeActivity extends BaseActivity {
             setLocalLanguage("english");
             save_language("english");
         }
+        */
         return true;
     }
 

@@ -28,7 +28,7 @@ public class CategoryActivity extends BaseActivity{
         if(specialty.length() < 3){
             binding.newCategoryField.setText("");
             binding.newCategoryField.requestFocus();
-            Toast.makeText(this, "Enter a valid speciality", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Enter a valid category name", Toast.LENGTH_SHORT).show();
             return;
         }
         Category category = new Category(specialty);
